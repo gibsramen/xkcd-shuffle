@@ -6,7 +6,6 @@ interface Props {
   value: number
 };
 
-
 const PanelSelection = (props: Props) => {
   return (
     <div id="panel-number-select">
@@ -23,6 +22,6 @@ const PanelSelection = (props: Props) => {
       <button onClick={props.onClick}>Submit</button>
     </div>
   )
-}
+};
 
 export default PanelSelection;

@@ -3,7 +3,6 @@ interface ComicProps {
   imgLinks: Array<string>
 };
 
-
 const Comic = (props: ComicProps) => {
   const comicPanels = [];
   for (let i=0; i < props.numPanels; i++) {
@@ -22,7 +21,7 @@ const Panel = (props: {imgLink: string}) => {
     <img
       src={props.imgLink}
       alt="placeholder"
-      width="300px"
+      height="200px"
     />
   )
 };
