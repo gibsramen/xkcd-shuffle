@@ -3,4 +3,10 @@ footer {
     left:0;
     bottom:0;
     right:0;
+    background-color:#2f2f2f;
+    color:white;
+}
+
+footer p a {
+    color:cyan
 }

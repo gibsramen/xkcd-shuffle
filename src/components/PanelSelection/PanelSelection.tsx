@@ -1,4 +1,5 @@
 import { ChangeEvent, MouseEvent } from 'react';
+import './PanelSelection.css';
 
 interface Props {
   onChange: (event: ChangeEvent<HTMLSelectElement>) => void,

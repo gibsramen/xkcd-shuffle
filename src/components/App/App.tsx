@@ -1,4 +1,5 @@
 import { useState, useEffect, ChangeEvent, MouseEvent } from 'react';
+import Header from '../Header/Header';
 import PanelSelection from '../PanelSelection/PanelSelection';
 import Comic from '../Comic/Comic';
 import Footer from '../Footer/Footer';
@@ -43,6 +44,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <Header />
       <PanelSelection
         onChange={selectNumPanels}
         onClick={submitEvent}
