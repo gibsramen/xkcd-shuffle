@@ -1,7 +1,7 @@
 import { useState, useEffect, ChangeEvent, MouseEvent } from 'react';
-import PanelSelection from './PanelSelection';
-import Comic from './Comic';
-import Footer from './Footer';
+import PanelSelection from '../PanelSelection/PanelSelection';
+import Comic from '../Comic/Comic';
+import Footer from '../Footer/Footer';
 import axios from 'axios';
 import './App.css';
 
