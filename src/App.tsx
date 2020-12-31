@@ -1,6 +1,7 @@
 import { useState, useEffect, ChangeEvent, MouseEvent } from 'react';
 import PanelSelection from './PanelSelection';
 import Comic from './Comic';
+import Footer from './Footer';
 import axios from 'axios';
 import './App.css';
 
@@ -48,6 +49,7 @@ const App = () => {
         value={selectedValue}
       />
       {isComicPresent && <Comic numPanels={numPanels} imgLinks={imgLinks} />}
+      <Footer />
      </div>
   );
 };
