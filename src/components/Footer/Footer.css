@@ -1,5 +1,6 @@
 footer {
-    position:absolute;
+    position:fixed;
+    padding:0;
     left:0;
     bottom:0;
     right:0;
@@ -8,5 +9,11 @@ footer {
 }
 
 footer p a {
-    color:cyan
+    color:cyan;
+    padding:0;
+}
+
+footer p {
+    margin:0;
+    padding:20px;
 }

@@ -33,7 +33,7 @@ const ComicInfo = (props: ComicInfoProps) => {
   ).slice(0, props.numPanels);
 
   const comicLinks = links.map( (link, index) =>
-    <p id="comic-links" key={index}>
+    <p class-name="comic-link" key={index}>
       <a href={link}>{link}</a>
     </p>
   );

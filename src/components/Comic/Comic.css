@@ -2,10 +2,10 @@
     width:20%;
     margin:auto;
     margin-top: 20px;
+    margin-bottom: 20px;
     text-align:center;
 }
 
-#comic-links ul {
-    text-align:center;
-    margin:auto;
+#comic-container {
+    margin-bottom: 100px;
 }

@@ -34,6 +34,9 @@ const App = () => {
         setImgLinks(response.data.img_links);
         setComicsUsed(response.data.original_comics);
       });
+    } else {
+      setImgLinks(defaultImgLinks);
+      setComicsUsed(defaultComicLinks);
     }
   }, [numPanels])
 
