@@ -33,7 +33,6 @@ const UIButtons = (props: any) => {
   return (
       <span>
         <button onClick={props.submitOnClick}>Submit</button>
-        <button disabled={props.extraBtnsDisabled}>Save Comic</button>
       </span>
   )
 };
