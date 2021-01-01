@@ -1,28 +1,48 @@
+import './Comic.css';
+
 interface ComicProps {
   numPanels: number,
-  imgLinks: Array<string>
+  imgLinks: Array<string>,
+  comicsUsed: Array<string>
 };
 
 const Comic = (props: ComicProps) => {
   const comicPanels = [];
   for (let i=0; i < props.numPanels; i++) {
     comicPanels.push(
-      <Panel imgLink={props.imgLinks[i]} key={i} />
+      <img src={props.imgLinks[i]} key={i} alt="placeholder" height="200px"/>
     )
   }
 
   return (
-    <div id="comic">{comicPanels}</div>
+    <div id="comic-container">
+      <div id="comic">{comicPanels}</div>
+      <ComicInfo comicsList={props.comicsUsed} numPanels={props.numPanels} />
+    </div>
   )
 };
 
-const Panel = (props: {imgLink: string}) => {
+interface ComicInfoProps {
+  comicsList: Array<string>,
+  numPanels: number
+};
+
+const ComicInfo = (props: ComicInfoProps) => {
+  const links = props.comicsList.map( (comic) =>
+    "https://xkcd.com/" + comic
+  ).slice(0, props.numPanels);
+
+  const comicLinks = links.map( (link, index) =>
+    <p id="comic-links" key={index}>
+      <a href={link}>{link}</a>
+    </p>
+  );
+
   return (
-    <img
-      src={props.imgLink}
-      alt="placeholder"
-      height="200px"
-    />
+    <div id="comic-info">
+      <p>Comics used:</p>
+      {comicLinks}
+    </div>
   )
 };
 

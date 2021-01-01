@@ -12,6 +12,11 @@ for (let i = 0; i < 5; i++) {
   defaultImgLinks.push("https://i.kym-cdn.com/entries/icons/mobile/000/024/523/sad.jpg");
 }
 
+const defaultComicLinks: string[] = [];
+for (let i = 0; i < 5; i++) {
+  defaultComicLinks.push("1");
+}
+
 function getRandomPanels(numPanels: number) {
   return axios.post(apiUrl, {numPanels: numPanels});
 }
@@ -20,12 +25,14 @@ const App = () => {
   const [numPanels, setNumPanels] = useState(3);
   const [selectedValue, setSelectedValue] = useState(3);
   const [imgLinks, setImgLinks] = useState(defaultImgLinks);
+  const [comicsUsed, setComicsUsed] = useState(defaultComicLinks);
   const [isComicPresent, setIsComicPresent] = useState(false); //don't display anything to start
 
   useEffect( () => {
     if (process.env.NODE_ENV === "production") {
       getRandomPanels(numPanels).then( response => {
         setImgLinks(response.data.img_links);
+        setComicsUsed(response.data.original_comics);
       });
     }
   }, [numPanels])
@@ -51,7 +58,10 @@ const App = () => {
         value={selectedValue}
         extraBtnsDisabled={!isComicPresent}
       />
-      {isComicPresent && <Comic numPanels={numPanels} imgLinks={imgLinks} />}
+      {
+        isComicPresent &&
+        <Comic numPanels={numPanels} imgLinks={imgLinks} comicsUsed={comicsUsed} />
+      }
       <Footer />
      </div>
   );
