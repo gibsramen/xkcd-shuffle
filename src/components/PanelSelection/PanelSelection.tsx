@@ -4,7 +4,8 @@ import './PanelSelection.css';
 interface Props {
   onChange: (event: ChangeEvent<HTMLSelectElement>) => void,
   onClick: (event: MouseEvent<HTMLButtonElement>) => void,
-  value: number
+  value: number,
+  extraBtnsDisabled: boolean
 };
 
 const PanelSelection = (props: Props) => {
@@ -20,8 +21,20 @@ const PanelSelection = (props: Props) => {
         <option value="4-panels">4</option>
         <option value="5-panels">5</option>
       </select>
-      <button onClick={props.onClick}>Submit</button>
+      <UIButtons
+        extraBtnsDisabled={props.extraBtnsDisabled}
+        submitOnClick={props.onClick}
+      />
     </div>
+  )
+};
+
+const UIButtons = (props: any) => {
+  return (
+      <span>
+        <button onClick={props.submitOnClick}>Submit</button>
+        <button disabled={props.extraBtnsDisabled}>Save Comic</button>
+      </span>
   )
 };
 

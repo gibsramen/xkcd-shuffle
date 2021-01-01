@@ -49,6 +49,7 @@ const App = () => {
         onChange={selectNumPanels}
         onClick={submitEvent}
         value={selectedValue}
+        extraBtnsDisabled={!isComicPresent}
       />
       {isComicPresent && <Comic numPanels={numPanels} imgLinks={imgLinks} />}
       <Footer />
