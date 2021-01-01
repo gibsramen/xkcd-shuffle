@@ -4,12 +4,13 @@ import PanelSelection from '../PanelSelection/PanelSelection';
 import Comic from '../Comic/Comic';
 import Footer from '../Footer/Footer';
 import axios from 'axios';
+import placeholder from '../../placeholder.jpg'
 import './App.css';
 
 const apiUrl = "https://ohls623gud.execute-api.us-west-1.amazonaws.com/default/return-random-xkcd-panels";
 const defaultImgLinks: string[] = [];
 for (let i = 0; i < 5; i++) {
-  defaultImgLinks.push("https://i.kym-cdn.com/entries/icons/mobile/000/024/523/sad.jpg");
+  defaultImgLinks.push(placeholder);
 }
 
 const defaultComicLinks: string[] = [];
