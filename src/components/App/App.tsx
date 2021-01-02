@@ -27,19 +27,22 @@ const App = () => {
   const [selectedValue, setSelectedValue] = useState(3);
   const [imgLinks, setImgLinks] = useState(defaultImgLinks);
   const [comicsUsed, setComicsUsed] = useState(defaultComicLinks);
-  const [isComicPresent, setIsComicPresent] = useState(false); //don't display anything to start
+  const [refresh, toggleRefresh] = useState(true);
+  const [isComicPresent, setIsComicPresent] = useState(false);
 
   useEffect( () => {
     if (process.env.NODE_ENV === "production") {
       getRandomPanels(numPanels).then( response => {
-        setImgLinks(response.data.img_links);
-        setComicsUsed(response.data.original_comics);
+        let x = response.data.img_links;
+        let y = response.data.original_comics;
+        setImgLinks(x);
+        setComicsUsed(y);
       });
     } else {
       setImgLinks(defaultImgLinks);
       setComicsUsed(defaultComicLinks);
     }
-  }, [numPanels])
+  }, [numPanels, refresh])
 
   const selectNumPanels = (event: ChangeEvent<HTMLSelectElement>) => {
     const panelSelection = event.target.value;
@@ -48,7 +51,8 @@ const App = () => {
   };
 
   const submitEvent = (event: MouseEvent<HTMLButtonElement>) => {
-    setIsComicPresent(true);
+    setIsComicPresent(true); //don't show before button clicked
+    toggleRefresh(!refresh); //allow refresh even if no new numPanels
     setNumPanels(selectedValue);
     event.preventDefault();
   };
@@ -64,7 +68,11 @@ const App = () => {
       />
       {
         isComicPresent &&
-        <Comic numPanels={numPanels} imgLinks={imgLinks} comicsUsed={comicsUsed} />
+        <Comic
+          numPanels={numPanels}
+          imgLinks={imgLinks}
+          comicsUsed={comicsUsed}
+        />
       }
       <Footer />
      </div>
