@@ -6,6 +6,32 @@
     text-align:center;
 }
 
+.comic-link {
+    padding:0;
+    margin:0;
+}
+
+.comic-link a {
+    font-size:14px;
+}
+
+#comic-info p {
+    font-size:20px;
+    text-decoration:underline;
+}
+
 #comic-container {
+    margin: 0 auto;
     margin-bottom: 100px;
+    white-space: nowrap;
+}
+
+#comic {
+    display:inline-block;
+    width: 80%;
+    overflow-x:scroll;
+}
+
+#comic img {
+    height: 250px;
 }

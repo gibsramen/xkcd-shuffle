@@ -7,10 +7,11 @@ interface ComicProps {
 };
 
 const Comic = (props: ComicProps) => {
+  const altText = props.comicsUsed.map((comic) => "comic-" + comic)
   const comicPanels = [];
   for (let i=0; i < props.numPanels; i++) {
     comicPanels.push(
-      <img src={props.imgLinks[i]} key={i} alt="placeholder" height="200px"/>
+      <img src={props.imgLinks[i]} key={i} alt={altText[i]}/>
     )
   }
 
@@ -28,13 +29,13 @@ interface ComicInfoProps {
 };
 
 const ComicInfo = (props: ComicInfoProps) => {
-  const links = props.comicsList.map( (comic) =>
+  const links = props.comicsList.map((comic) =>
     "https://xkcd.com/" + comic
   ).slice(0, props.numPanels);
 
   const comicLinks = links.map( (link, index) =>
-    <p class-name="comic-link" key={index}>
-      <a href={link}>{link}</a>
+    <p className="comic-link" key={index}>
+      <a href={link} target="_blank">{link}</a>
     </p>
   );
 

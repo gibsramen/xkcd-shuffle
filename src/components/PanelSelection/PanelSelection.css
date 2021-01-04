@@ -1,6 +1,7 @@
 #panel-number-select {
     position:relative;
     margin-bottom:20px;
+    font-size:20px;
 }
 
 #panel-number-select label {
