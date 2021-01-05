@@ -35,7 +35,7 @@ const ComicInfo = (props: ComicInfoProps) => {
 
   const comicLinks = links.map( (link, index) =>
     <p className="comic-link" key={index}>
-      <a href={link} target="_blank">{link}</a>
+      <a href={link} target="_blank" rel="noreferrer">{link}</a>
     </p>
   );
 
