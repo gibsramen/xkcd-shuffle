@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/xkcd-shuffle/static/css/main.41dddefc.chunk.css",
-    "main.js": "/xkcd-shuffle/static/js/main.6ccc4dca.chunk.js",
-    "main.js.map": "/xkcd-shuffle/static/js/main.6ccc4dca.chunk.js.map",
+    "main.css": "/xkcd-shuffle/static/css/main.a76693a4.chunk.css",
+    "main.js": "/xkcd-shuffle/static/js/main.fd0f0328.chunk.js",
+    "main.js.map": "/xkcd-shuffle/static/js/main.fd0f0328.chunk.js.map",
     "runtime-main.js": "/xkcd-shuffle/static/js/runtime-main.26924528.js",
     "runtime-main.js.map": "/xkcd-shuffle/static/js/runtime-main.26924528.js.map",
     "static/js/2.1643e28c.chunk.js": "/xkcd-shuffle/static/js/2.1643e28c.chunk.js",
@@ -10,14 +10,14 @@
     "static/js/3.f1e95e8d.chunk.js": "/xkcd-shuffle/static/js/3.f1e95e8d.chunk.js",
     "static/js/3.f1e95e8d.chunk.js.map": "/xkcd-shuffle/static/js/3.f1e95e8d.chunk.js.map",
     "index.html": "/xkcd-shuffle/index.html",
-    "static/css/main.41dddefc.chunk.css.map": "/xkcd-shuffle/static/css/main.41dddefc.chunk.css.map",
+    "static/css/main.a76693a4.chunk.css.map": "/xkcd-shuffle/static/css/main.a76693a4.chunk.css.map",
     "static/js/2.1643e28c.chunk.js.LICENSE.txt": "/xkcd-shuffle/static/js/2.1643e28c.chunk.js.LICENSE.txt",
     "static/media/placeholder.8e311211.jpg": "/xkcd-shuffle/static/media/placeholder.8e311211.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.26924528.js",
     "static/js/2.1643e28c.chunk.js",
-    "static/css/main.41dddefc.chunk.css",
-    "static/js/main.6ccc4dca.chunk.js"
+    "static/css/main.a76693a4.chunk.css",
+    "static/js/main.fd0f0328.chunk.js"
   ]
 }
