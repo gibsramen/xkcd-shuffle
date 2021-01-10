@@ -4,18 +4,28 @@ import PanelSelection from '../PanelSelection/PanelSelection';
 import Comic from '../Comic/Comic';
 import Footer from '../Footer/Footer';
 import axios from 'axios';
-import placeholder from '../../placeholder.jpg'
 import './App.css';
 
 const apiUrl = "https://ohls623gud.execute-api.us-west-1.amazonaws.com/default/return-random-xkcd-panels";
-const defaultImgLinks: string[] = [];
-for (let i = 0; i < 5; i++) {
-  defaultImgLinks.push(placeholder);
-}
 
 const defaultComicLinks: string[] = [];
 for (let i = 0; i < 5; i++) {
   defaultComicLinks.push("1");
+}
+
+interface Placeholder {
+  author: string,
+  id: string,
+  height: number,
+  width: number,
+  url: string,
+  download_url: string
+};
+
+function getRandomPlaceholders(numPanels: number) {
+  let rand = Math.floor(Math.random()*100)
+  let url = "https://picsum.photos/v2/list?page=" + rand + "&limit=" + numPanels;
+  return axios.get(url)
 }
 
 function getRandomPanels(numPanels: number) {
@@ -23,24 +33,28 @@ function getRandomPanels(numPanels: number) {
 }
 
 const App = () => {
-  const [numPanels, setNumPanels] = useState(3);
+  const [numPanels, setNumPanels] = useState(-1);
   const [selectedValue, setSelectedValue] = useState(3);
-  const [imgLinks, setImgLinks] = useState(defaultImgLinks);
+  const [imgLinks, setImgLinks] = useState([]);
   const [comicsUsed, setComicsUsed] = useState(defaultComicLinks);
   const [refresh, toggleRefresh] = useState(true);
   const [isComicPresent, setIsComicPresent] = useState(false);
 
   useEffect( () => {
-    if (process.env.NODE_ENV === "production") {
-      getRandomPanels(numPanels).then( response => {
-        let x = response.data.img_links;
-        let y = response.data.original_comics;
-        setImgLinks(x);
-        setComicsUsed(y);
-      });
-    } else {
-      setImgLinks(defaultImgLinks);
-      setComicsUsed(defaultComicLinks);
+    if (numPanels !== -1) {
+      if (process.env.NODE_ENV === "production") {
+        getRandomPanels(numPanels).then( response => {
+          let x = response.data.img_links;
+          let y = response.data.original_comics;
+          setImgLinks(x);
+          setComicsUsed(y);
+        });
+      } else {
+        getRandomPlaceholders(numPanels).then(response => {
+          setImgLinks(response.data.map((data: Placeholder) => data.download_url))
+        })
+        setComicsUsed(defaultComicLinks);
+      }
     }
   }, [numPanels, refresh])
 
