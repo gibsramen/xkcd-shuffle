@@ -43,14 +43,12 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
 
-  useEffect( () => {
+  useEffect(() => {
     if (numPanels !== -1) {
       if (process.env.NODE_ENV === "production") {
-        getRandomPanels(numPanels).then( response => {
-          let x = response.data.img_links;
-          let y = response.data.original_comics;
-          setImgLinks(x);
-          setComicsUsed(y);
+        getRandomPanels(numPanels).then(response => {
+          setImgLinks(response.data.img_links);
+          setComicsUsed(response.data.original_comics);
         });
       } else {
         getRandomPlaceholders(numPanels).then(response => {
@@ -63,7 +61,7 @@ const App = () => {
   }, [numPanels, refresh])
 
   //https://stackoverflow.com/a/56903585
-  useEffect( () => {
+  useEffect(() => {
     if (counter >= numPanels && numPanels !== -1) {
       setIsLoading(false);
       setCounter(0);
@@ -92,7 +90,6 @@ const App = () => {
         value={selectedValue}
         extraBtnsDisabled={!isComicPresent}
       />
-      {/*<div id="loading" style={{display: isLoading ? "block" : "none"}}>Loading...</div>*/}
       {
         isComicPresent &&
         <Comic

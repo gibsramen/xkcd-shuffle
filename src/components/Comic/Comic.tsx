@@ -47,7 +47,7 @@ const ComicInfo = (props: ComicInfoProps) => {
     "https://xkcd.com/" + comic
   ).slice(0, props.numPanels);
 
-  const comicLinks = links.map( (link, index) =>
+  const comicLinks = links.map((link, index) =>
     <p className="comic-link" key={index}>
       <a href={link} target="_blank" rel="noreferrer">{link}</a>
     </p>
