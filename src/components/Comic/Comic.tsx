@@ -1,27 +1,15 @@
-import { useRef, useState } from 'react';
 import './Comic.css';
 
 interface ComicProps {
   numPanels: number,
   imgLinks: Array<string>,
   comicsUsed: Array<string>,
+  imgLoaded: () => void,
+  isLoading: boolean
 };
 
 const Comic = (props: ComicProps) => {
   const altText = props.comicsUsed.map((comic) => "comic-" + comic)
-
-  //https://stackoverflow.com/a/56903585
-  const [loading, setLoading] = useState(true);
-  const counter = useRef(0);
-  const imgLoaded = () => {
-    counter.current += 1;
-    if (counter.current >= props.numPanels) {
-      setLoading(false);
-      counter.current = 0;
-    } else {
-      setLoading(true);
-    }
-  };
 
   const comicPanels = [];
   for (let i=0; i < props.numPanels; i++) {
@@ -30,23 +18,28 @@ const Comic = (props: ComicProps) => {
         src={props.imgLinks[i]}
         key={i}
         alt={altText[i]}
-        onLoad={imgLoaded}
+        onLoad={props.imgLoaded}
       />
     )
   }
 
   return (
     <div id="comic-container">
-      <div id="loading" style={{display: loading ? "block" : "none"}}>Loading...</div>
-      <div id="comic" style={{display: loading ? "none" : "inline-block"}}>{comicPanels}</div>
-      <ComicInfo comicsList={props.comicsUsed} numPanels={props.numPanels} />
+      <div id="loading" style={{display: props.isLoading ? "inline-block" : "none"}}>Loading...</div>
+      <div id="comic" style={{display: !props.isLoading ? "inline-block" : "none"}}>{comicPanels}</div>
+      <ComicInfo
+        comicsList={props.comicsUsed}
+        numPanels={props.numPanels}
+        isLoading={props.isLoading}
+      />
     </div>
   )
 };
 
 interface ComicInfoProps {
   comicsList: Array<string>,
-  numPanels: number
+  numPanels: number,
+  isLoading: boolean
 };
 
 const ComicInfo = (props: ComicInfoProps) => {
@@ -61,7 +54,7 @@ const ComicInfo = (props: ComicInfoProps) => {
   );
 
   return (
-    <div id="comic-info">
+    <div id="comic-info" style={{display: !props.isLoading ? "block" : "none"}}>
       <p>Comics used:</p>
       {comicLinks}
     </div>

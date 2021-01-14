@@ -10,7 +10,8 @@ const apiUrl = "https://ohls623gud.execute-api.us-west-1.amazonaws.com/default/r
 
 const defaultComicLinks: string[] = [];
 for (let i = 0; i < 5; i++) {
-  defaultComicLinks.push("1");
+  let rand = Math.floor(Math.random()*2400)
+  defaultComicLinks.push(rand.toString());
 }
 
 interface Placeholder {
@@ -39,6 +40,8 @@ const App = () => {
   const [comicsUsed, setComicsUsed] = useState(defaultComicLinks);
   const [refresh, toggleRefresh] = useState(true);
   const [isComicPresent, setIsComicPresent] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [counter, setCounter] = useState(0);
 
   useEffect( () => {
     if (numPanels !== -1) {
@@ -55,8 +58,17 @@ const App = () => {
         })
         setComicsUsed(defaultComicLinks);
       }
+      setIsLoading(true);
     }
   }, [numPanels, refresh])
+
+  //https://stackoverflow.com/a/56903585
+  useEffect( () => {
+    if (counter >= numPanels && numPanels !== -1) {
+      setIsLoading(false);
+      setCounter(0);
+    }
+  }, [counter, isLoading, numPanels])
 
   const selectNumPanels = (event: ChangeEvent<HTMLSelectElement>) => {
     const panelSelection = event.target.value;
@@ -80,12 +92,15 @@ const App = () => {
         value={selectedValue}
         extraBtnsDisabled={!isComicPresent}
       />
+      {/*<div id="loading" style={{display: isLoading ? "block" : "none"}}>Loading...</div>*/}
       {
         isComicPresent &&
         <Comic
           numPanels={numPanels}
           imgLinks={imgLinks}
           comicsUsed={comicsUsed}
+          imgLoaded={() => setCounter(counter+1)}
+          isLoading={isLoading}
         />
       }
       <Footer />
